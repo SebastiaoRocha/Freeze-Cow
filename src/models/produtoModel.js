@@ -46,8 +46,8 @@ const produtoModel = sequelize.define('Produtos', {
     timestamps: false
 });
 
-unidadeModel.hasMany(produtoModel, {foreignKey: 'ID_Unidade_FK', as: 'Unidades'});
-produtoModel.belongsTo(unidadeModel, {foreignKey: 'ID_Unidade_FK', as: 'Unidades'});
+unidadeModel.hasMany(produtoModel, {foreignKey: 'ID_Unidade_FK', as: 'Unidade'});
+produtoModel.belongsTo(unidadeModel, {foreignKey: 'ID_Unidade_FK', as: 'Produto'});
 
 // const teste = async ()=> {
 //     let result = await produtoModel.findAll();
@@ -55,4 +55,5 @@ produtoModel.belongsTo(unidadeModel, {foreignKey: 'ID_Unidade_FK', as: 'Unidades
 // }
 
 // teste();
+
 module.exports = { produtoModel };

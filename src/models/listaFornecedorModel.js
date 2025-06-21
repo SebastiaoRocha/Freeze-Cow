@@ -28,9 +28,10 @@ const listaFornecedorModel = sequelize.define('lista_Fornecedores',{
     timestamps: false
 });
 
-unidadeModel.hasMany(listaFornecedorModel, {foreignKey: 'id_Fornecedor_Lista_Fornecedor', as: 'Unidades'});
-unidadeModel.belongsTo(listaFornecedorModel, {foreignKey: 'id_Unidade_Lista_Fornecedor', as: 'Fornecedores'});
-listaFornecedorModel.belongsTo(unidadeModel, {foreignKey: 'id_Fornecedor_Lista_Fornecedor', as: 'Unidades'});
-listaFornecedorModel.belongsTo(fornecedorModel, {foreignKey: 'id_Unidade_Lista_Fornecedor', as: 'Fornecedores'});
+fornecedorModel.hasMany(listaFornecedorModel, {foreignKey: 'id_Fornecedor_Lista_Fornecedor', as: 'Fornecedores'});
+listaFornecedorModel.belongsTo(fornecedorModel, {foreignKey: 'id_Fornecedor_Lista_Fornecedor', as: 'Fornecedores'});
+
+unidadeModel.hasMany(listaFornecedorModel, {foreignKey: 'id_Unidade_Lista_Fornecedor', as: 'Unidades'});
+listaFornecedorModel.belongsTo(unidadeModel, {foreignKey: 'id_Unidade_Lista_Fornecedor', as: 'Unidades'});
 
 module.exports = {listaFornecedorModel};
