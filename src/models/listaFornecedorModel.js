@@ -4,39 +4,33 @@ const { DataTypes } = require('sequelize');
 const { fornecedorModel } = require('./fornecedorModel');
 const { unidadeModel } = require('./unidadeModel');
 
-const listaFornecedorModel = sequelize.define('listaFornecedores',{
-    ID_Fornecedor_Lista_Fornecedor:{
+const listaFornecedorModel = sequelize.define('lista_Fornecedores',{
+    id_Fornecedor_Lista_Fornecedor:{
         type: DataTypes.INTEGER,
         references:{
             model: fornecedorModel,
             key: 'ID_Fornecedor'
         },
-        allowNull: false
+        allowNull: false,
+        primaryKey: true
     },
-    ID_Unidade_Lista_Fornecedor:{
+    id_Unidade_Lista_Fornecedor:{
         type: DataTypes.INTEGER,
         references:{
             model: unidadeModel,
             key: 'ID_Unidade'
         },
-        allowNull: false
+        allowNull: false,
+        primaryKey: true
     }
 },{
-    tableName: 'listaFornecedores',
+    tableName: 'lista_Fornecedores',
     timestamps: false
 });
 
-unidadeModel.hasMany(listaFornecedorModel, {foreignKey: 'ID_Fornecedor_Lista_Fornecedor', as: 'Unidades'});
-unidadeModel.belongsTo(listaFornecedorModel, {foreignKey: 'ID_Unidade_Lista_Fornecedor', as: 'Fornecedores'});
-listaFornecedorModel.belongsTo(unidadeModel, {foreignKey: 'ID_Fornecedor_Lista_Fornecedor', as: 'Unidades'});
-listaFornecedorModel.belongsTo(fornecedorModel, {foreignKey: 'ID_Unidade_Lista_Fornecedor', as: 'Fornecedores'});
+unidadeModel.hasMany(listaFornecedorModel, {foreignKey: 'id_Fornecedor_Lista_Fornecedor', as: 'Unidades'});
+unidadeModel.belongsTo(listaFornecedorModel, {foreignKey: 'id_Unidade_Lista_Fornecedor', as: 'Fornecedores'});
+listaFornecedorModel.belongsTo(unidadeModel, {foreignKey: 'id_Fornecedor_Lista_Fornecedor', as: 'Unidades'});
+listaFornecedorModel.belongsTo(fornecedorModel, {foreignKey: 'id_Unidade_Lista_Fornecedor', as: 'Fornecedores'});
 
-const teste = async ()=>{
-    let result = await listaFornecedorModel.findAll();
-
-    console.log(result);
-};
-
-teste();
-
-// module.exports = {listaFornecedorModel};
+module.exports = {listaFornecedorModel};
