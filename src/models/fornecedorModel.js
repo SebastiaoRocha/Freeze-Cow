@@ -7,20 +7,20 @@ const fornecedorModel = sequelize.define("Fornecedores", {
         autoIncrement: true,
         primaryKey: true
     },
-    nomeFornecedor:{
+    Nome_Fornecedor:{
         type: DataTypes.STRING,
         allowNull: false
     },
-    cnpjFornecedor:{
+    CNPJ_Fornecedor:{
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
-    enderecoFornecedor:{
+    Endereco_Fornecedor:{
         type: DataTypes.STRING,
         allowNull: false
     },
-    telefoneFornecedor:{
+    Telefone_Fornecedor:{
         type: DataTypes.STRING,
         allowNull: false
     }
