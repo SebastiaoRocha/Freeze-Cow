@@ -1,5 +1,5 @@
 const { sequelize } = require('../config/bd');
-const { DataTypes } = require('sequelize');
+const { DataTypes, ForeignKeyConstraintError } = require('sequelize');
 
 const { unidadeModel } = require('./unidadeModel');
 
@@ -31,15 +31,14 @@ const colaboradorModel = sequelize.define('Colaboradores', {
     },
     telefone_Colaborador:{
         type: DataTypes.STRING,
+        allowNull: true
     }
 },{
     tableName: 'Colaboradores',
     timestamps: false
 });
 
-unidadeModel.hasMany(colaboradorModel, {foreingKey: 'ID_FK_Unidade', as: 'Unidades'});
-
-colaboradorModel.belongsTo(unidadeModel, {foreingKey: 'ID_FK_Unidade', as: 'Unidades'});
-
+unidadeModel.hasMany(colaboradorModel, {foreignKey: 'ID_FK_Unidade', as: 'Unidades'});
+colaboradorModel.belongsTo(unidadeModel, {foreignKey: 'ID_FK_Unidade', as: 'Unidades'});
 
 module.exports = { colaboradorModel };

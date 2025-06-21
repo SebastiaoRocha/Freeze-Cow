@@ -1,10 +1,11 @@
 const { sequelize } = require('../config/bd');
-const { dataTypes, dataTypes, DataTypes} = require('sequelize');
+const { DataTypes} = require('sequelize');
 
-const unidadeModel = sequelize.define('Unidade',{
+const unidadeModel = sequelize.define('Unidades',{
     ID_Unidade:{
         type: DataTypes.INTEGER,
-        allowNull: true
+        autoIncrement: true,
+        primaryKey: true
     },
     Nome_Unidade:{
         type: DataTypes.STRING,
@@ -24,8 +25,8 @@ const unidadeModel = sequelize.define('Unidade',{
     }
     
 },{
-    tableName: 'Alunos',
+    tableName: 'Unidades',
     timestamps: false
 });
 
-module.exports = {alunoModel};
+module.exports = {unidadeModel};
