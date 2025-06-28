@@ -1,24 +1,24 @@
-const { colaboradorModel } = require('../models/colaboradorModel');
+const { unidadeModel } = require('../models/unidadeModel');
 const { Op} = require('sequelize');
 const {parseDateBd} = require('../utils/dateUtils');
 
-const colaboradorController = {
-    listarColaborador: (req,res) => {
-        res.send('Listando colaboradores!');
+const unidadeController = {
+    listarUnidade: (req,res) => {
+        res.send('Listando Unidade!');
     },
 
-    cadastrarColaborador: (req,res) => {
-        res.send('Cadastrando colaborador!');
+    cadastrarUnidade: (req,res) => {
+        res.send('Cadastrando Unidade!');
     },
 
-    atualizarColaborador: (req,res) => {
-        res.send('Atualizando colaborador!');
+    atualizarUnidade: (req,res) => {
+        res.send('Atualizando Unidade!');
     },
 
-    deletarColaborador: (req,res) => {
-        res.send('Deletando colaborador!');
+    deletarUnidade: (req,res) => {
+        res.send('Deletando Unidade!');
     }
     
 };
 
-module.exports = { colaboradorController };
+module.exports = { unidadeController };
