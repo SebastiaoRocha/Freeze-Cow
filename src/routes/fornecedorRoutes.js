@@ -8,9 +8,9 @@ router.get("/", fornecedorController.listarFornecedor);
 
 router.post("/", fornecedorController.cadastrarFornecedor);
 
-router.put("/", fornecedorController.atualizarFornecedor);
+router.put("/:ID_Cliente", fornecedorController.atualizarFornecedor);
 
-router.delete("/", fornecedorController.deletarFornecedor);
+router.delete("/:ID_Cliente", fornecedorController.deletarFornecedor);
 
 module.exports = {rotasFornecedor: router};
 

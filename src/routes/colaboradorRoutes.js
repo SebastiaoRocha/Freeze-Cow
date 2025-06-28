@@ -8,9 +8,9 @@ router.get("/", colaboradorController.listarColaborador);
 
 router.post("/", colaboradorController.cadastrarColaborador);
 
-router.put("/", colaboradorController.atualizarColaborador);
+router.put("/:ID_Cliente", colaboradorController.atualizarColaborador);
 
-router.delete("/", colaboradorController.deletarColaborador);
+router.delete("/:ID_Cliente", colaboradorController.deletarColaborador);
 
 module.exports = {rotasColaborador: router};
 

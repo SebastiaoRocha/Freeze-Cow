@@ -1,3 +1,4 @@
+
 const express = require('express');
 
 const router = express.Router();
@@ -8,9 +9,9 @@ router.get("/", clienteController.listarCliente);
 
 router.post("/", clienteController.cadastrarCliente);
 
-router.put("/", clienteController.atualizarCliente);
+router.put("/:ID_Cliente", clienteController.atualizarCliente);
 
-router.delete("/", clienteController.deletarCliente);
+router.delete("/:ID_Cliente", clienteController.deletarCliente);
 
 module.exports = {rotasCliente: router};
 

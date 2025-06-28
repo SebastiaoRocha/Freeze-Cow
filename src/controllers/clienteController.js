@@ -1,3 +1,4 @@
+
 const { clienteModel } = require('../models/clienteModel');
 const { Op} = require('sequelize');
 const {parseDateBd} = require('../utils/dateUtils');

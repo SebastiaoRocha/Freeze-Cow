@@ -8,8 +8,8 @@ router.get("/", unidadeController.listarUnidade);
 
 router.post("/", unidadeController.cadastrarUnidade);
 
-router.put("/", unidadeController.atualizarUnidade);
+router.put("/:ID_Cliente", unidadeController.atualizarUnidade);
 
-router.delete("/", unidadeController.deletarUnidade);
+router.delete("/:ID_Cliente", unidadeController.deletarUnidade);
 
 module.exports = {rotasUnidade: router};
