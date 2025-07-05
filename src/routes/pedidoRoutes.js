@@ -8,9 +8,9 @@ router.get("/", pedidoController.listarPedido);
 
 router.post("/", pedidoController.cadastrarPedido);
 
-router.put("/:ID_Cliente", pedidoController.atualizarPedido);
+router.put("/:ID_Pedido", pedidoController.atualizarPedido);
 
-router.delete("/:ID_Cliente", pedidoController.deletarPedido);
+router.delete("/:ID_Pedido", pedidoController.deletarPedido);
 
 module.exports = {rotasPedido: router};
 

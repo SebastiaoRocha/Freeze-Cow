@@ -65,7 +65,7 @@ const colaboradorController = {
         try {
             const { ID_Colaborador } = req.params;
             const { ID_FK_Unidade, nome_Colaborador, cargoColaborador, nivel_Acesso_Colaborador, telefone_Colaborador } = req.body;
-
+            console.log(ID_Colaborador);
             let colaborador = await colaboradorModel.findByPk(ID_Colaborador);
 
             if (!colaborador) {
@@ -100,7 +100,30 @@ const colaboradorController = {
     },
 
     deletarColaborador: async (req,res) => {
-        res.send('Deletando colaborador!');
+        try {
+            
+            const { ID_Colaborador } = req.params;
+    
+            let colaborador = await colaboradorModel.findByPk(ID_Colaborador);
+    
+            if(!ID_Colaborador){
+                return res.status(404).json({message: "Colaborador não encontrado!"});
+            }
+    
+            let nome_Colaborador = colaborador.nome_Colaborador;
+
+            let result = await colaboradorModel.destroy({where: {ID_Colaborador}});
+
+            if(result > 0){
+                return res.status(200).json({message: `${nome_Colaborador} foi excluido com sucesso!`});
+            }else{
+                return res.status(404).json({message: "Erro ao excluir colaborador!"});
+            }
+
+        } catch (error) {
+            console.error("Erro ao excluir colaborador", error);
+            return res.status(500).json({message: "Erro ao excluir colaborador!"});
+        }     
     }
     
 };
