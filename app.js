@@ -25,6 +25,7 @@ app.use("/clientes", rotasCliente);
 app.use("/pedidos", rotasPedido);
 app.use("/produtos", rotasProduto);
 
+
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta: ${PORT}`);
 });

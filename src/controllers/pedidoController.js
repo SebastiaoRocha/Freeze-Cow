@@ -85,13 +85,54 @@ const pedidoController = {
         }
     },
 
-    //Não atualiza
+    atualizarPedido: async (req,res) => {
+        try {
+            const { ID_Pedido, ID_Produto } = req.params;
+            const { ID_FK_Unidade, nome_Cliente, cpf_Cliente, endereco_Cliente, telefone_Cliente } = req.body;
+
+
+
+            let cliente = await clienteModel.findByPk(ID_Cliente);
+
+            if (!cliente) {
+                return res.status(404).json({ message: "Cliente não encontrado!" });
+            }
+
+            if (cpf_Cliente || endereco_Cliente) {
+                let cliente = await clienteModel.findOne({
+                    where: {
+                        [Op.or]: [
+                            { cpf_Cliente },
+                            { endereco_Cliente }
+                        ]
+                    }
+                });
+
+                if (cliente) {
+                    return res.status(409).json({ message: "CPF ou Endereço já cadastrados!" });
+                }
+
+            }
+
+            let dadosAtualizados = { ID_FK_Unidade, nome_Cliente, cpf_Cliente, endereco_Cliente, telefone_Cliente };
+
+            await clienteModel.update(dadosAtualizados, { where: { ID_Cliente } });
+
+            cliente = await clienteModel.findByPk(ID_Cliente);
+
+            return res.status(200).json({ message: "Cliente atualizado com sucesso: ", Cliente: cliente });
+
+        } catch (error) {
+            console.error("Erro ao atualizar cliente!");
+            return res.status(500).json({ message: "Erro ao atualizar cliente!" });
+        }
+    },
 
     deletarPedido: async (req, res) => {
         try {
 
             const { ID_Pedido } = req.params;
-            console.log(ID_Pedido)
+            
             let pedido = await pedidoModel.findByPk(ID_Pedido);
 
             if (!pedido) {
@@ -107,7 +148,7 @@ const pedidoController = {
             } else {
                 return res.status(404).json({ message: "Erro ao excluir pedido!" });
             }
-
+            
         } catch (error) {
             console.error("Erro ao excluir pedido", error);
             return res.status(500).json({ message: "Erro ao excluir pedido!" });
