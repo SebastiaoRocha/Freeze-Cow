@@ -17,16 +17,17 @@ const pedidoModel = sequelize.define('Pedidos',{
         },
         allowNull: false
     },
-    data_Pedido:{
+    dataPedido:{
         type: DataTypes.DATEONLY,
-        allowNull: false
+        allowNull: true,
+        default: DataTypes.NOW
     },
 },{
     tableName: 'Pedidos',
     timestamps: false
 });
 
-clienteModel.hasMany(pedidoModel, {foreignKey: 'id_Cliente', as: 'Clientes'});
-pedidoModel.belongsTo(clienteModel, {foreignKey: 'id_Cliente', as: 'Clientes'});
+clienteModel.hasMany(pedidoModel, {foreignKey: 'ID_FK_Cliente', as: 'clientePedido'});
+pedidoModel.belongsTo(clienteModel, {foreignKey: 'ID_FK_Cliente', as: 'pedidoCliente'});
 
 module.exports = {pedidoModel};
