@@ -32,11 +32,9 @@ const itensPedidoModel = sequelize.define('Item_Pedido',{
     timestamps: false
 });
 
-pedidoModel.hasMany(itensPedidoModel, {foreignKey: 'ID_FK_Pedido', as: 'Pedidos'});
-itensPedidoModel.belongsTo(pedidoModel, {foreignKey: 'ID_FK_Pedido', as: 'Item'});
+pedidoModel.belongsToMany(produtoModel, {through:itensPedidoModel, foreignKey: 'ID_FK_Pedido', as: 'pedidoProduto'});
 
-produtoModel.hasMany(itensPedidoModel, {foreignKey: 'ID_FK_Produto', as: 'Produtos'});
-itensPedidoModel.belongsTo(produtoModel, {foreignKey: 'ID_FK_Produto', as: 'Item_Pedido'});
+produtoModel.belongsToMany(pedidoModel, {through: itensPedidoModel, foreignKey: 'ID_FK_Produto', as: 'produtoPedido'});
 
 // const teste = async ()=>{
 //     let result = await itensPedidoModel.findAll();
